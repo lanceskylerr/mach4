@@ -1,62 +1,62 @@
 <?php
 session_start();
-$name = array("Sam Espino", "Shae Smith", "Third Lee");
-$email = array("sam@gmail.com", "shae@gmail.com", "third@gmail.com");
+$nam = array("Sam Espino", "Shae Smith", "Third Lee");
+$ema = array("sam@gmail.com", "shae@gmail.com", "third@gmail.com");
 $pas = array("secret1", "secret2", "secret3");
 
 
-if (isset($_POST['email'])) {
+if (isset($_POST['login'])) {
     $emailInput = $_POST["email"];
     $passwordInput = $_POST["password"];
 
-    foreach ($email as $key => $email) {
+    foreach ($ema as $key => $email) {
         if ($email == $emailInput && $pas[$key] == $passwordInput) {
-            echo "signed in"; 
-            $_SESSION["name"] = $name[$key];
+            echo "logged in";
+            $_SESSION["name"] = $nam[$key];
             header("Location: profile.php");
             die();
         }
     }
-   
+    header("Location: register.html");
 }
 
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
 
+<!doctype html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Index</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
-    <link rel="stylesheet" href="./style.css">
-
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>MyyyAppp</title>
+    <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
-    <!-- partial:index.partial.html -->
-    <div id="login-form-wrap">
+<form action="" method="POST">
+    <div class="container">
 
-
-        <form id="login-form" action="index.php" method="post">
-            <img src="robot.png" alt="avatar" class="avatar">
-            <p>
-                <input type="email" id="email" name="email" placeholder="Email Address" required><i
-                    class="validation"><span></span><span></span></i>
-            </p>
-            <p>
-                <input type="password" id="password" name="password" placeholder="Password" required><i
-                    class="validation"><span></span><span></span></i>
-            </p>
-            <p>
-                <button name="signin" class="buttons">Sign In</button>
-                <button type="reset" class="buttons">Clear</button>
-
-            </p>
-        </form>
+        <img class="img" src="robot.png" alt="">
+        <input class="input" type="text" placeholder="Email Address" id="email" name="email">
+        <input class="input" type="password" placeholder="Password" id="password" name="password">
+        
+        <div class="container2">
+            <button class="button" name="login">Sign In</button>
+            <button class="button" onclick="clearInputs()">Clear</button>
+        </div>
     </div>
-
-
+</form>
 </body>
+
+<script>
+
+
+    function clearInputs() {
+        document.getElementById("email").value = "";
+        document.getElementById("id").value = "";
+    }
+
+</script>
 
 </html>
